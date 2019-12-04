@@ -1,0 +1,2 @@
+1)libbxdualsdk.tar.gz包中有支持5代和6代Led控制卡的相关库；
+2)建议将libbxdualsdk包中的内容放到/opt/libbxdualsdk目录下；
