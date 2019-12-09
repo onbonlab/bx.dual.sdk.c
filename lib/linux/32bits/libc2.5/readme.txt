@@ -1,2 +1,2 @@
-bxdualsdk.tar.gzÖĞ°üº¬Ñö°î¿Æ¼¼µ¥Ë«É«SDKÈí¼ş¿ª·¢°ü£»
-i386-redhat-linuxLib.tar.gzÎªµÚÈı·½ÃüÁîÈí¼ş°ü£»
+bxdualsdk.tar.gzä¸­åŒ…å«ä»°é‚¦ç§‘æŠ€å•åŒè‰²SDKè½¯ä»¶å¼€å‘åŒ…ï¼›
+i386-redhat-linuxLib.tar.gzä¸ºç¬¬ä¸‰æ–¹è½¯ä»¶åŒ…ï¼›
