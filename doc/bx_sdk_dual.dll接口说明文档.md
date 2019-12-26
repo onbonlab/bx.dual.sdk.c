@@ -27,12 +27,13 @@ I --> J[bxDual_ReleaseSdk]
 
 ### BX-5系列控制卡发送动态区(BX-5E)
 
-```flow
-st=>start: bxDual_InitSdk
-e=>end: bxDual_ReleaseSdk
-op=>operation: bxDual_dynamicArea_AddAreaWithTxt_5G/bxDual_dynamicArea_AddAreaWithPic_5G
-
-st->op->e
+```mermaid
+graph TD
+A[bxDual_InitSdk]
+A -->|文本| D[bxDual_dynamicArea_AddAreaWithTxt_5G]
+A -->|图片| E[bxDual_dynamicArea_AddAreaWithPic_5G]
+D --> B[bxDual_ReleaseSdk]
+E --> B
 ```
 
 ### BX-6系列控制卡发送节目
@@ -61,12 +62,13 @@ I --> J[bxDual_ReleaseSdk]
 
 ### BX-6系列控制卡发送动态区(6E 6EX)
 
-```flow
-st=>start: bxDual_InitSdk
-e=>end: bxDual_ReleaseSdk
-op=>operation: bxDual_dynamicAreaS_AddTxtDetails_6G/bxDual_dynamicAreaS_AddAreaPic_6G
-
-st->op->e
+```mermaid
+graph TD
+A[bxDual_InitSdk]
+A -->|文本| D[bxDual_dynamicArea_AddAreaWithTxt_6G]
+A -->|图片| E[bxDual_dynamicArea_AddAreaWithPic_6G]
+D --> B[bxDual_ReleaseSdk]
+E --> B
 ```
 
 
@@ -665,6 +667,20 @@ st->op->e
 
 **函数：**LEDEQSDK_API int _CALL_STD bxDual_program_addFrame_G6(EQscreenframeHeader_G6* sfHeader,Ouint8* picPath);
 
+##### 3.1.9 bxDual_program_addProgram_G6
+
+**返回值：**成功返回0；失败返回错误号 
+
+**参数：**
+
+| 参数     | 说明                                                      |
+| -------- | --------------------------------------------------------- |
+| programH | 参考结构体[EQprogramHeader_G6](#EQprogramHeader_G6)，附录 |
+
+**说明：** 添加节目句柄
+
+**函数：** LEDEQSDK_API int _CALL_STD bxDual_program_addProgram_G6(EQprogramHeader_G6 *programH);
+
 #### 3.2 动态区API
 
 ##### 3.2.1 bxDual_dynamicArea_AddAreaTxt_6G
@@ -972,6 +988,51 @@ typedef struct{
         Ouint8    ProgramLifeSpan_ed;//结束天
         //Ouint8    PlayPeriodGrpNum;//播放时段的组数
     }EQprogramHeader;
+### <span id="EQprogramHeader_G6">EQprogramHeader_G6</span>
+
+```
+typedef struct {
+/*
+默认：0x00
+LOGO文件:0x08
+扫描配置文件:0x02
+日志文件:0x06
+字库文件:0x05
+提示信息库文件: 0x07
+*/
+Ouint8    FileType; //文件类型
+Ouint32   ProgramID;//节目ID
+
+/*
+Bit0 –全局节目标志位
+Bit1 –动态节目标志位
+Bit2 –屏保节目标志位
+*/
+Ouint8    ProgramStyle;			//节目类型
+//注:带播放时段的节目优先级为 1，不带播放时段的节目优先级为 0
+Ouint8    ProgramPriority;		//节目等级
+Ouint8    ProgramPlayTimes;		//节目重播放次数
+Ouint16   ProgramTimeSpan;		//播放的方式
+Ouint8    SpecialFlag;			//特殊节目标
+Ouint8    CommExtendParaLen;	//扩展参数长度，默认为0x00
+Ouint16   ScheduNum;			//节目调度  
+Ouint16   LoopValue;			//调度规则循环次数
+Ouint8    Intergrate;			//调度相关
+Ouint8    TimeAttributeNum;		//时间属性组数
+Ouint16   TimeAttribute0Offset; //第一组时间属性偏移量--目前只支持一组
+Ouint8    ProgramWeek;			//节目星期属性
+Ouint16   ProgramLifeSpan_sy;	//年
+Ouint8    ProgramLifeSpan_sm;	//月
+Ouint8    ProgramLifeSpan_sd;	//日
+Ouint16   ProgramLifeSpan_ey;	//结束年
+Ouint8    ProgramLifeSpan_em;	//结束日
+Ouint8    ProgramLifeSpan_ed;	//结束天
+//Ouint8    PlayPeriodGrpNum;		//播放时段的组数
+}BXprogramHeader_G6,EQprogramHeader_G6;
+```
+
+
+
 ### <span id="EQareaHeader">EQareaHeader</span>
 
     typedef struct{
