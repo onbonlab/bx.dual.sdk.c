@@ -1,0 +1,16 @@
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\obj\x86\Debug\LedSDK_VB.Resources.resources
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\obj\x86\Debug\LedSDK_VB.vbproj.GenerateResource.Cache
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\bin\Debug\LedSDK_VB.exe
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\bin\Debug\LedSDK_VB.pdb
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\bin\Debug\LedSDK_VB.xml
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\obj\x86\Debug\LedSDK_VB.exe
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\obj\x86\Debug\LedSDK_VB.xml
+C:\Users\Kai\Documents\Visual Studio 2010\Projects\GDI+\LedSDKDemo_CSharp\LedSDK_VB\obj\x86\Debug\LedSDK_VB.pdb
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\bin\Debug\LedSDK_VB.exe
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\bin\Debug\LedSDK_VB.pdb
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\bin\Debug\LedSDK_VB.xml
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\obj\x86\Debug\LedSDK_VB.Resources.resources
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\obj\x86\Debug\LedSDK_VB.vbproj.GenerateResource.Cache
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\obj\x86\Debug\LedSDK_VB.exe
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\obj\x86\Debug\LedSDK_VB.xml
+F:\Users\bx.dual.sdk.vs\bx.dual.sdk.c\Demo\SDK[C# C++ VB.net]\LedSDK_VB\obj\x86\Debug\LedSDK_VB.pdb
