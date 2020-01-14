@@ -47,16 +47,17 @@ eSCREEN_COLOR_DOUBLE,      //双基色
 eSCREEN_COLOR_THREE,       //七彩色
 eSCREEN_COLOR_FULLCOLOR,   //全彩色
 }E_ScreenColor_G56;
+
 typedef enum
 {
 eDOUBLE_COLOR_PIXTYPE_1 = 1, //双基色1：R+G
 eDOUBLE_COLOR_PIXTYPE_2,   //双基色2：G+R
 }E_DoubleColorPixel_G56;
 
-typedef enum : int   //加上 :int 则元素是 int 类型
+typedef enum //: int   //加上 :int 则元素是 int 类型
 {
-eSINGLELINE,   //单行
-eMULTILINE,    //多行
+	eSINGLELINE,   //单行
+	eMULTILINE,    //多行
 }E_arrMode;
 
 typedef enum
@@ -109,10 +110,10 @@ eCIRCLE,   //圆形
 
 typedef enum
 {
-pNORMAL,       //正常
-pROTATERIGHT,  //向右旋转
-pMIRROR,       //镜像
-pROTATELEFT,   //向左旋转
+	pNORMAL,       //正常
+	pROTATERIGHT,  //向右旋转
+	pMIRROR,       //镜像
+	pROTATELEFT,   //向左旋转
 }E_txtDirection;//图文区文字方向---暂不支持
 
 #pragma pack (push,1)
@@ -546,37 +547,37 @@ Ouint8 BattleRTCWeek;//星期
 }BattleTime;
 
 typedef struct {
-/*
-默认：0x00
-LOGO文件:0x08
-扫描配置文件:0x02
-日志文件:0x06
-字库文件:0x05
-提示信息库文件: 0x07
-*/
-Ouint8     FileType; //文件类型
-Ouint32    ProgramID;//节目ID
+	/*
+	默认：0x00
+	LOGO文件:0x08
+	扫描配置文件:0x02
+	日志文件:0x06
+	字库文件:0x05
+	提示信息库文件: 0x07
+	*/
+	Ouint8     FileType; //文件类型
+	Ouint32    ProgramID;//节目ID
 
-/*
-Bit0 –全局节目标志位
-Bit1 –动态节目标志位
-Bit2 –屏保节目标志位
-*/
-Ouint8    ProgramStyle;//节目类型
+	/*
+	Bit0 –全局节目标志位
+	Bit1 –动态节目标志位
+	Bit2 –屏保节目标志位
+	*/
+	Ouint8    ProgramStyle;//节目类型
 
-//注:带播放时段的节目优先级为 1，不 带播放时段的节目优先级为 0
-Ouint8    ProgramPriority; //节目等级
-Ouint8    ProgramPlayTimes;//节目重播放次数
-Ouint16   ProgramTimeSpan; //播放的方式
-Ouint8    ProgramWeek;      //节目星期属性
-Ouint16   ProgramLifeSpan_sy;//年
-Ouint8    ProgramLifeSpan_sm;//月
-Ouint8    ProgramLifeSpan_sd;//日
-Ouint16   ProgramLifeSpan_ey;//结束年
-Ouint8    ProgramLifeSpan_em;//结束日
-Ouint8    ProgramLifeSpan_ed;//结束天
-//Ouint8    PlayPeriodGrpNum;//播放时段的组数
-}BXprogramHeader,EQprogramHeader;
+	//注:带播放时段的节目优先级为 1，不 带播放时段的节目优先级为 0
+	Ouint8    ProgramPriority; //节目等级
+	Ouint8    ProgramPlayTimes;//节目重播放次数
+	Ouint16   ProgramTimeSpan; //播放的方式
+	Ouint8    ProgramWeek;      //节目星期属性
+	Ouint16   ProgramLifeSpan_sy;//年
+	Ouint8    ProgramLifeSpan_sm;//月
+	Ouint8    ProgramLifeSpan_sd;//日
+	Ouint16   ProgramLifeSpan_ey;//结束年
+	Ouint8    ProgramLifeSpan_em;//结束日
+	Ouint8    ProgramLifeSpan_ed;//结束天
+	//Ouint8    PlayPeriodGrpNum;//播放时段的组数
+}BXprogramHeader, EQprogramHeader;
 
 typedef struct
 {
@@ -611,13 +612,23 @@ Ouint16  FrameBackup;
 }BXscreenframeHeader,EQscreenframeHeader;
 
 typedef struct {
-Ouint8   AreaFFlag;
-Ouint8   AreaFDispStyle;
-Ouint8   AreaFDispSpeed;
-Ouint8   AreaFMoveStep;
-Ouint8   AreaFWidth;
-Ouint16  AreaFBackup;
-}BXareaframeHeader,EQareaframeHeader;
+	Ouint8   AreaFFlag;
+	Ouint8   AreaFDispStyle;
+	Ouint8   AreaFDispSpeed;
+	Ouint8   AreaFMoveStep;
+	Ouint8   AreaFWidth;
+	Ouint16  AreaFBackup;
+}BXareaframeHeader, EQareaframeHeader;
+
+typedef struct
+{
+	Ouint8 FrameDispStype;    //边框显示方式
+	Ouint8 FrameDispSpeed;    //边框显示速度
+	Ouint8 FrameMoveStep;     //边框移动步长
+	Ouint8 FrameUnitLength;   //边框组元长度
+	Ouint8 FrameUnitWidth;    //边框组元宽度
+	Ouint8 FrameDirectDispBit;//上下左右边框显示标志位，目前只支持6QX-M卡    
+}BXscreenframeHeader_G6, EQscreenframeHeader_G6;
 
 typedef struct {
 /*
@@ -663,16 +674,16 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 
 typedef struct
 {
-E_arrMode arrMode; //排列方式--单行多行  E_arrMode::	eSINGLELINE,   //单行 eMULTILINE,    //多行
-Ouint16  fontSize; //字体大小
-Ouint32 color;//字体颜色 E_Color_G56 此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
-Obool    fontBold; //是否为粗体
-Obool    fontItalic;//是否为斜体
-E_txtDirection tdirection;//文字方向
-Ouint16   txtSpace;  //文字间隔   
-Ouint8 Halign; //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
-Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
-}BXfontData,EQfontData;
+	E_arrMode arrMode; //排列方式--单行多行  E_arrMode::	eSINGLELINE,   //单行 eMULTILINE,    //多行
+	Ouint16  fontSize; //字体大小
+	Ouint32 color;//字体颜色 E_Color_G56 此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
+	Obool    fontBold; //是否为粗体
+	Obool    fontItalic;//是否为斜体
+	E_txtDirection tdirection;//文字方向
+	Ouint16   txtSpace;  //文字间隔   
+	Ouint8 Halign; //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
+	Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
+}BXfontData, EQfontData;
 
 typedef struct {
 Ouint8 fileName[4]; //文件名
@@ -771,15 +782,7 @@ Ouint8    ProgramLifeSpan_ed;	//结束天
 //Ouint8    PlayPeriodGrpNum;		//播放时段的组数
 }BXprogramHeader_G6,EQprogramHeader_G6;
 
-typedef struct
-{
-Ouint8 FrameDispStype;    //边框显示方式
-Ouint8 FrameDispSpeed;    //边框显示速度
-Ouint8 FrameMoveStep;     //边框移动步长
-Ouint8 FrameUnitLength;   //边框组元长度
-Ouint8 FrameUnitWidth;    //边框组元宽度
-Ouint8 FrameDirectDispBit;//上下左右边框显示标志位，目前只支持6QX-M卡    
-}BXscreenframeHeader_G6,EQscreenframeHeader_G6;
+
 
 /*下面的这个语音结构体EQSound_6G仅在动态区时使用；图文分区播放语音请使用：EQPicAreaSoundHeader_G6;*/
 typedef struct
@@ -858,172 +861,172 @@ Ouint8  StartUpMode;         //启动模式
 
 typedef struct
 {
-Ouint8   PageStyle;			//数据页类型
-Ouint8   DisplayMode;		//显示方式:0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; ...0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
-Ouint8   ClearMode;			//退出方式/清屏方式
-Ouint8   Speed;				//速度等级
-Ouint16  StayTime;			//停留时间
-Ouint8   RepeatTime;		//重复次数
-Ouint16  ValidLen;			//此字段只在左移右移方式下有效
-Ouint8   CartoonFrameRate;  //特技为动画方式时，该值代表其帧率
-Ouint8   BackNotValidFlag;  //背景无效标志
-//字体信息-------------------------------------------------------------------------------------------------------
-E_arrMode arrMode;			//排列方式--单行多行
-Ouint16  fontSize;			//字体大小
-Ouint32  color;				//字体颜色 E_Color_G56此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
-Obool    fontBold;			//是否为粗体
-Obool    fontItalic;		//是否为斜体
-E_txtDirection tdirection;	//文字方向
-Ouint16   txtSpace;			//文字间隔    
-Ouint8 Halign; //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
-Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
-//字体信息 结束
-}BXpageHeader_G6,EQpageHeader_G6;
+	Ouint8   PageStyle;			//数据页类型
+	Ouint8   DisplayMode;		//显示方式:0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; ...0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
+	Ouint8   ClearMode;			//退出方式/清屏方式
+	Ouint8   Speed;				//速度等级
+	Ouint16  StayTime;			//停留时间
+	Ouint8   RepeatTime;		//重复次数
+	Ouint16  ValidLen;			//此字段只在左移右移方式下有效
+	Ouint8   CartoonFrameRate;  //特技为动画方式时，该值代表其帧率
+	Ouint8   BackNotValidFlag;  //背景无效标志
+	//字体信息-------------------------------------------------------------------------------------------------------
+	E_arrMode arrMode;			//排列方式--单行多行
+	Ouint16  fontSize;			//字体大小
+	Ouint32  color;				//字体颜色 E_Color_G56此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
+	Obool    fontBold;			//是否为粗体
+	Obool    fontItalic;		//是否为斜体
+	E_txtDirection tdirection;	//文字方向
+	Ouint16   txtSpace;			//文字间隔    
+	Ouint8 Halign; //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
+	Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
+	//字体信息 结束
+}BXpageHeader_G6, EQpageHeader_G6;
 
 
 typedef struct
 {
-Ouint8 uAreaId;
-EQareaHeader_G6 oAreaHeader_G6;
-EQpageHeader_G6 stPageHeader;
-Ouint8* fontName;
-Ouint8* strAreaTxtContent;     //当调用图片的接口函数时，这个字段中的值为图片的路径文件名；
+	Ouint8 uAreaId;
+	EQareaHeader_G6 oAreaHeader_G6;
+	EQpageHeader_G6 stPageHeader;
+	Ouint8* fontName;
+	Ouint8* strAreaTxtContent;     //当调用图片的接口函数时，这个字段中的值为图片的路径文件名；
 }DynamicAreaParams;
 
 
 typedef struct {
-Ouint8  fileName[4]; //节目参数文件名
-Ouint8  fileType;	 //文件类型
-Ouint32 fileLen;	 //参数文件长度
-Ouint8* fileAddre;   //文件所在的缓存地址
-Ouint8  dfileName[4];//节目数据文件名
-Ouint8  dfileType;   //节目数据文件类型
-Ouint32 dfileLen;	 //数据文件长度
-Ouint8* dfileAddre;  //数据文件缓存地址
-}EQprogram_G6;
+	Ouint8  fileName[4]; //节目参数文件名
+	Ouint8  fileType;	 //文件类型
+	Ouint32 fileLen;	 //参数文件长度
+	Ouint8* fileAddre;   //文件所在的缓存地址
+	Ouint8  dfileName[4];//节目数据文件名
+	Ouint8  dfileType;   //节目数据文件类型
+	Ouint32 dfileLen;	 //数据文件长度
+	Ouint8* dfileAddre;  //数据文件缓存地址
+}BXprogram_G6, EQprogram_G6;
 
 typedef struct {
-Ouint8   fileType;   //要获取的文件类型
-Ouint16  fileNumber; //返回有多少个文件
-Ouint8*  dataAddre;  //返回文件列表地址
+	Ouint8   fileType;   //要获取的文件类型
+	Ouint16  fileNumber; //返回有多少个文件
+	Ouint8*  dataAddre;  //返回文件列表地址
 }GetDirBlock_G56;
 
 typedef struct {
-Ouint8  fileName[4];  //文件名
-Ouint8  fileType;     //文件类型
-Ouint32 fileLen;      //文件长度
-Ouint32 fileCRC;      //文件CRC校验
+	Ouint8  fileName[4];  //文件名
+	Ouint8  fileType;     //文件类型
+	Ouint32 fileLen;      //文件长度
+	Ouint32 fileCRC;      //文件CRC校验
 }FileAttribute_G56;
 
 typedef struct {
-Ouint8*  fileAddre;     //文件地址指針
-Ouint32 fileLen;        //文件长度
-Ouint16 fileCRC16;      //文件CRC16校验
+	Ouint8*  fileAddre;     //文件地址指針
+	Ouint32 fileLen;        //文件长度
+	Ouint16 fileCRC16;      //文件CRC16校验
 }FileCRC16_G56;
 
 typedef struct {
-Ouint8*  fileAddre;     //文件地址指針
-Ouint32 fileLen;        //文件长度
-Ouint32 fileCRC32;      //文件CRC32校验
+	Ouint8*  fileAddre;     //文件地址指針
+	Ouint32 fileLen;        //文件长度
+	Ouint32 fileCRC32;      //文件CRC32校验
 }FileCRC32_G56;
 
 typedef struct {
-Ouint32 Color369; //369点颜色
-Ouint32 ColorDot; //点颜色
-Ouint32 ColorBG;  //表盘外圈颜色 模式没有圈泽此颜色无效
+	Ouint32 Color369; //369点颜色
+	Ouint32 ColorDot; //点颜色
+	Ouint32 ColorBG;  //表盘外圈颜色 模式没有圈泽此颜色无效
 }ClockColor_G56;
 
 typedef struct
 {
-Ouint8  RunMode;
-Ouint16 Timeout;
-Ouint8  ImmePlay;
-Ouint8  AreaType;
-Ouint16 AreaX;
-Ouint16 AreaY;
-Ouint16 AreaWidth;
-Ouint16 AreaHeight;
-}BXdynamicHeader,EQdynamicHeader;
+	Ouint8  RunMode;
+	Ouint16 Timeout;
+	Ouint8  ImmePlay;
+	Ouint8  AreaType;
+	Ouint16 AreaX;
+	Ouint16 AreaY;
+	Ouint16 AreaWidth;
+	Ouint16 AreaHeight;
+}BXdynamicHeader, EQdynamicHeader;
 
 typedef struct		//jqb add 20190529
 {
-Ouint8 AreaId;		//区域序号，从 0 开始
-Ouint8 RunMode;		//RunMode			1		0x00	动态区运行模式
-//0— 动态区数据循环显示。
-//1— 动态区数据显示完成后静止显示最后一页数据。
-//2— 动态区数据循环显示，超过设定时间后数据仍未更新时不再显示
-//3— 动态区数据循环显示，超过设定
+	Ouint8 AreaId;		//区域序号，从 0 开始
+	Ouint8 RunMode;		//RunMode			1		0x00	动态区运行模式
+	//0— 动态区数据循环显示。
+	//1— 动态区数据显示完成后静止显示最后一页数据。
+	//2— 动态区数据循环显示，超过设定时间后数据仍未更新时不再显示
+	//3— 动态区数据循环显示，超过设定
 
-Ouint16 Timeout;	//动态区数据超时时间，单位为秒
-Ouint8 RelateAllPro;	//当该字节为 1 时，所有异步节目播放时都允许播放该动态区域；
-//为 0 时，由接下来的 RelateProNum 值决定								
-Ouint16 RelateProNum;	//RelateProNum 0-N
-//动态区域关联了多少个异步节目一旦关联了某个异步节目，则当该异步节目播放时允许播放该动态区域，
-//否则，不允许播放该动	态区域以下的节目编号根据RelateProNum的值来确定，当该	值为 0 时不发送;
+	Ouint16 Timeout;	//动态区数据超时时间，单位为秒
+	Ouint8 RelateAllPro;	//当该字节为 1 时，所有异步节目播放时都允许播放该动态区域；
+	//为 0 时，由接下来的 RelateProNum 值决定								
+	Ouint16 RelateProNum;	//RelateProNum 0-N
+	//动态区域关联了多少个异步节目一旦关联了某个异步节目，则当该异步节目播放时允许播放该动态区域，
+	//否则，不允许播放该动	态区域以下的节目编号根据RelateProNum的值来确定，当该	值为 0 时不发送;
 
-//vector<Ouint16> vctRelateProSerial;		
+	//vector<Ouint16> vctRelateProSerial;		
 
-Ouint8 ImmePlay;	//ImmePlay		1			是否立即播放
-//该字节为 0 时，该动态区域与异步节目一起播放
-//该字节为 1 时，异步节目停止播放，仅播放该动态区域
-//该字节为 2 时，暂存该动态区域，当播放完节目编号最高的异步节目后播放该动态区域
-//注意：当该字节为 0 时，RelateAllPro 到	RelateProSerialN - 1 的参数才有效，否则无效当该参数为 1 或 2 时，由于不与异步节目同时播放，
-//为控制该动态区域能及时结束，可选择RunMode 参数为 2 或 4，当然也可通过删除该区域来实现
+	Ouint8 ImmePlay;	//ImmePlay		1			是否立即播放
+	//该字节为 0 时，该动态区域与异步节目一起播放
+	//该字节为 1 时，异步节目停止播放，仅播放该动态区域
+	//该字节为 2 时，暂存该动态区域，当播放完节目编号最高的异步节目后播放该动态区域
+	//注意：当该字节为 0 时，RelateAllPro 到	RelateProSerialN - 1 的参数才有效，否则无效当该参数为 1 或 2 时，由于不与异步节目同时播放，
+	//为控制该动态区域能及时结束，可选择RunMode 参数为 2 或 4，当然也可通过删除该区域来实现
 
-Ouint32 Reserved;// 4字节 0x00 保留字节
-Ouint8  AreaType;
-Ouint16 AreaX;
-Ouint16 AreaY;
-Ouint16 AreaWidth;
-Ouint16 AreaHeight;
-Ouint8 AreaFFlag;
-Ouint16 PageNum;
-//Ouint32 PageDataLen;
+	Ouint32 Reserved;// 4字节 0x00 保留字节
+	Ouint8  AreaType;
+	Ouint16 AreaX;
+	Ouint16 AreaY;
+	Ouint16 AreaWidth;
+	Ouint16 AreaHeight;
+	Ouint8 AreaFFlag;
+	Ouint16 PageNum;
+	//Ouint32 PageDataLen;
 }Onbon_5E_DynamicHeader;
 
 
 typedef struct
 {
-Ouint8 nType; // nType=1:文本； nType=2:图片；
+	Ouint8 nType; // nType=1:文本； nType=2:图片；
 
-//PageStyle begin---------------
-Ouint8 DisplayMode;
-Ouint8 ClearMode;
-Ouint8 Speed;
-Ouint16 StayTime;
-Ouint8 RepeatTime;
-//PageStyle End.
+	//PageStyle begin---------------
+	Ouint8 DisplayMode;  //显示方式: 0x00 –随机显示  0x01 –静止显示  0x02 –快速打出  0x03 –向左移动  0x04 –向左连移  0x05 –向上移动  0x06 –向上连移  0x07 –闪烁 0x08 –飘雪 0x09 –冒泡 0x0a –中间移出
+	Ouint8 ClearMode;	 //退出方式/清屏方式
+	Ouint8 Speed;
+	Ouint16 StayTime;    //停留时间，单位为10ms
+	Ouint8 RepeatTime;
+	//PageStyle End.
 
-//文本显示内容和字体格式 begin---------
-EQfontData oFont;
-Ouint8* fontName;
-Ouint8* strAreaTxtContent;
-//end.
+	//文本显示内容和字体格式 begin---------
+	EQfontData oFont;
+	Ouint8* fontName;
+	Ouint8* strAreaTxtContent;
+	//end.
 
-//图片路径 begin---------
-Ouint8* filePath;
-//end.
+	//图片路径 begin---------
+	Ouint8* filePath;
+	//end.
 
-}DynamicAreaBaseInfo_5G, DynamicAreaTxtInfo_5G, DynamicAreaPicInfo_5G;
+}DynamicAreaBaseInfo_5G, DynamicAreaTxtInfo_5G, DynamicAreaPicInfo_5G, onbon_DynamicAreaInfo_G6;
 
 
 /*
 typedef struct : DynamicAreaBaseInfo_5G
 {
-//PageStyle begin---------------
-//Ouint8 DisplayMode;
-//Ouint8 ClearMode;
-//Ouint8 Speed;
-//Ouint16 StayTime;
-//Ouint8 RepeatTime;
-//PageStyle End.
+	//PageStyle begin---------------
+	//Ouint8 DisplayMode;
+	//Ouint8 ClearMode;
+	//Ouint8 Speed;
+	//Ouint16 StayTime;
+	//Ouint8 RepeatTime;
+	//PageStyle End.
 
 
-//文本显示内容和字体格式 begin---------
-EQfontData oFont;
-Ouint8* fontName;
-Ouint8* strAreaTxtContent;
-//end.
+	//文本显示内容和字体格式 begin---------
+	EQfontData oFont;
+	Ouint8* fontName;
+	Ouint8* strAreaTxtContent;
+	//end.
 
 }DynamicAreaTxtInfo_5G;
 
@@ -1031,20 +1034,21 @@ Ouint8* strAreaTxtContent;
 
 typedef struct : DynamicAreaBaseInfo_5G
 {
-//PageStyle begin---------------
-//Ouint8 DisplayMode;
-//Ouint8 ClearMode;
-//Ouint8 Speed;
-//Ouint16 StayTime;
-//Ouint8 RepeatTime;
-//PageStyle End.
+	//PageStyle begin---------------
+	//Ouint8 DisplayMode;
+	//Ouint8 ClearMode;
+	//Ouint8 Speed;
+	//Ouint16 StayTime;
+	//Ouint8 RepeatTime;
+	//PageStyle End.
 
-//图片路径 begin---------
-Ouint8* filePath;
-//end.
+	//图片路径 begin---------
+	Ouint8* filePath;
+	//end.
 
 }DynamicAreaPicInfo_5G;
 */
+
 #pragma pack(pop)
 
 
@@ -2133,6 +2137,9 @@ BXDUAL_API int _CALL_STD bxDual_program_IntegrateProgramFile(EQprogram* program)
 *
 ******************************************************************/
 BXDUAL_API int _CALL_STD bxDual_program_picturesAreaAddFrame(Ouint16 areaID, EQareaframeHeader* afHeader, Ouint8* picPath);
+
+BXDUAL_API int _CALL_STD bxDual_program_picturesAreaAddFrame_G6(Ouint16 areaID, BXscreenframeHeader_G6* afHeader, Ouint8* picPath);
+
 /*! ***************************************************************
 * 函数名：       bxDual_program_pictureAreaGetOnePage(）
 * 参数名：
@@ -2329,6 +2336,11 @@ BXDUAL_API int _CALL_STD bxDual_program_timeAreaRemoveDialPic(Ouint16 areaID);
 
 //6代控制卡动态区功能开始:====================================================================================================================================================================================================================
 
+/*
+功能：设置动态区
+*/
+BXDUAL_API int _CALL_STD bxDual_dynamicArea_SetDualPixel(E_DoubleColorPixel_G56 ePixelRGorGR);
+
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 功能：6代更新动态区最基本功能：仅显示动态区：即不与节目一起显示，如果当前有节目显示，调用此函数后，LED屏幕上会清空原来的内容，显示此函数中 strAreaTxtContent 参数的内容；
 如果要与屏幕上原来显示的节目一起显示，请调用下面的 动态区文本关联节目 函数；与节目一起显示时，要注意动态区域与原来的节目区域不能重叠！
@@ -2344,29 +2356,29 @@ fontName	  :字体名称，如"宋体";  nFontSize:字体大小，如12;
 strAreaTxtContent:要显示的文本内容
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaTxt_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, Ouint16 uAreaX, Ouint16 uAreaY,
-Ouint16 uWidth, Ouint16 uHeight, Ouint8* fontName, Ouint8 nFontSize, Ouint8* strAreaTxtContent);
+	Ouint16 uWidth, Ouint16 uHeight, Ouint8* fontName, Ouint8 nFontSize, Ouint8* strAreaTxtContent);
 
 //6代更新动态区详细功能：仅显示动态区; 将要显示的一些特性/属性，封装在 EQareaHeader_G6 和 EQpageHeader_G6 结构体中；
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaTxtDetails_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, EQareaHeader_G6* oAreaHeader_G6,
-EQpageHeader_G6* stPageHeader, Ouint8* fontName, Ouint8* strAreaTxtContent);
+	EQpageHeader_G6* stPageHeader, Ouint8* fontName, Ouint8* strAreaTxtContent);
 
 //动态区文本关联节目: 
 //RelateProNum = 0 时，关联所有节目，与所有节目一起播放，如果没有节目，则不播放该动态区；
 //			   > 0 时, 指定关联节目，要关联的节目ID存放在RelateProSerial[]中；
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaTxtDetails_WithProgram_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, EQareaHeader_G6* oAreaHeader_G6,
-EQpageHeader_G6* stPageHeader, Ouint8* fontName, Ouint8* strAreaTxtContent, Ouint16 RelateProNum, Ouint16* RelateProSerial);
+	EQpageHeader_G6* stPageHeader, Ouint8* fontName, Ouint8* strAreaTxtContent, Ouint16 RelateProNum, Ouint16* RelateProSerial);
 
 
 //更新动态区图片：仅显示动态区;
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaPic_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, Ouint16	AreaX, Ouint16 AreaY,
-Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath);
+	Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath);
 
 
 //动态区图片关联节目: 
 //RelateProNum = 0 时，关联所有节目，与所有节目一起播放，如果没有节目，则不播放该动态区；
 //			   > 0 时, 指定关联节目，要关联的节目ID存放在RelateProSerial[]中；
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaPic_WithProgram_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, Ouint16 AreaX, Ouint16 AreaY,
-Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath, Ouint16 RelateProNum, Ouint16* RelateProSerial);
+	Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath, Ouint16 RelateProNum, Ouint16* RelateProSerial);
 
 
 
@@ -2387,6 +2399,25 @@ BXDUAL_API int _CALL_STD bxDual_dynamicAreaS_AddAreaPic_6G(Ouint8* pIP, Ouint32 
 //RelateProNum = 0 时，关联所有节目，与所有节目一起播放，如果没有节目，则不播放该动态区；
 //			   > 0 时, 指定关联节目，要关联的节目ID存放在RelateProSerial[]中；
 BXDUAL_API int _CALL_STD bxDual_dynamicAreaS_AddAreaPic_WithProgram_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaCount, DynamicAreaParams* pParams, Ouint16 RelateProNum, Ouint16* RelateProSerial);
+
+
+/*
+功能说明：增加多条信息（文本/图片）到指定的动态区，并可以关联这个动态区到指定的节目；
+*/
+BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaInfos_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color,
+	Ouint8 uAreaId,
+	Ouint8 RunMode,
+	Ouint16 Timeout,
+	Ouint8 RelateAllPro,
+	Ouint16 RelateProNum,
+	Ouint16* RelateProSerial,
+	Ouint8 ImmePlay,
+	Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
+	EQareaframeHeader oFrame,
+
+	Ouint8 nInfoCount,
+	DynamicAreaBaseInfo_5G** pInfo
+);
 
 
 /*
@@ -2431,52 +2462,76 @@ BXDUAL_API int _CALL_STD  bxDual_dynamicArea_UpdateSoundIndepend(Ouint8* pIP, Ou
 strAreaTxtContent - 动态区域内要显示的文本内容
 */
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaWithTxt_5G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color,
-Ouint8 uAreaId,
-Ouint8 RunMode,
-Ouint16 Timeout,
-Ouint8 RelateAllPro,
-Ouint16 RelateProNum,
-Ouint16* RelateProSerial,
-Ouint8 ImmePlay,
-Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
-EQareaframeHeader oFrame,
-//PageStyle begin--------
-Ouint8 DisplayMode,
-Ouint8 ClearMode,
-Ouint8 Speed,
-Ouint16 StayTime,
-Ouint8 RepeatTime,
-//PageStyle End.
-//显示内容和字体格式 begin---------
-EQfontData oFont,
-Ouint8* fontName,
-Ouint8* strAreaTxtContent
-//end.
+	Ouint8 uAreaId,
+	Ouint8 RunMode,
+	Ouint16 Timeout,
+	Ouint8 RelateAllPro,
+	Ouint16 RelateProNum,
+	Ouint16* RelateProSerial,
+	Ouint8 ImmePlay,
+	Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
+	EQareaframeHeader oFrame,
+	//PageStyle begin--------
+	Ouint8 DisplayMode,
+	Ouint8 ClearMode,
+	Ouint8 Speed,
+	Ouint16 StayTime,
+	Ouint8 RepeatTime,
+	//PageStyle End.
+	//显示内容和字体格式 begin---------
+	EQfontData oFont,
+	Ouint8* fontName,
+	Ouint8* strAreaTxtContent
+	//end.
+);
+
+BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaWithTxt_Point_5G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color,
+	Ouint8 uAreaId,
+	Ouint8 RunMode,
+	Ouint16 Timeout,
+	Ouint8 RelateAllPro,
+	Ouint16 RelateProNum,
+	Ouint16* RelateProSerial,
+	Ouint8 ImmePlay,
+	Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
+	EQareaframeHeader* oFrame,
+	//PageStyle begin--------
+	Ouint8 DisplayMode,
+	Ouint8 ClearMode,
+	Ouint8 Speed,
+	Ouint16 StayTime,
+	Ouint8 RepeatTime,
+	//PageStyle End.
+	//显示内容和字体格式 begin---------
+	EQfontData* oFont,
+	Ouint8* fontName,
+	Ouint8* strAreaTxtContent
+	//end.
 );
 
 /*
 功能说明：增加一个图片到指定的动态区，并可以关联这个动态区到指定的节目；
 */
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaWithPic_5G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color,
-Ouint8 uAreaId,
-Ouint8 RunMode,
-Ouint16 Timeout,
-Ouint8 RelateAllPro,
-Ouint16 RelateProNum,
-Ouint16* RelateProSerial,
-Ouint8 ImmePlay,
-Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
-EQareaframeHeader oFrame,
-//PageStyle begin--------
-Ouint8 DisplayMode,
-Ouint8 ClearMode,
-Ouint8 Speed,
-Ouint16 StayTime,
-Ouint8 RepeatTime,
-//PageStyle End.
-//图片路径 begin---------
-Ouint8* filePath
-//end.
+	Ouint8 uAreaId,
+	Ouint8 RunMode,
+	Ouint16 Timeout,
+	Ouint8 RelateAllPro,
+	Ouint16 RelateProNum,
+	Ouint16* RelateProSerial,
+	Ouint8 ImmePlay,
+	Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
+	EQareaframeHeader oFrame,
+	//PageStyle begin--------
+	Ouint8 DisplayMode,
+	Ouint8 ClearMode,
+	Ouint8 Speed,
+	Ouint16 StayTime,
+	Ouint8 RepeatTime,
+	//PageStyle End.
+	//图片路径 begin---------
+	Ouint8* filePath
+	//end.
 );
 
 
@@ -2484,18 +2539,18 @@ Ouint8* filePath
 功能说明：增加多条信息（文本/图片）到指定的动态区，并可以关联这个动态区到指定的节目；
 */
 BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaInfos_5G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color,
-Ouint8 uAreaId,
-Ouint8 RunMode,
-Ouint16 Timeout,
-Ouint8 RelateAllPro,
-Ouint16 RelateProNum,
-Ouint16* RelateProSerial,
-Ouint8 ImmePlay,
-Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
-EQareaframeHeader oFrame,
+	Ouint8 uAreaId,
+	Ouint8 RunMode,
+	Ouint16 Timeout,
+	Ouint8 RelateAllPro,
+	Ouint16 RelateProNum,
+	Ouint16* RelateProSerial,
+	Ouint8 ImmePlay,
+	Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
+	EQareaframeHeader oFrame,
 
-Ouint8 nInfoCount,
-DynamicAreaBaseInfo_5G** pInfo
+	Ouint8 nInfoCount,
+	DynamicAreaBaseInfo_5G** pInfo
 );
 
 
